@@ -53,13 +53,11 @@ todaydata.each do |x|
   #sleep
   if time > 0 then
     sleep time
+    client.update("【#{x['channelName']}】#{cleanTitle}　を録画中 #nasne")
   elsif time > -60 then
-
-  else
-    next
+    client.update("【#{x['channelName']}】#{cleanTitle}　を録画中 #nasne")
   end
 
-    client.update("【#{x['channelName']}】#{cleanTitle}　を録画中 #nasne")
 end#todaydata
 
 rescue => e
