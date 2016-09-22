@@ -30,6 +30,11 @@ todaydata = Array.new
 data['item'].each do |x|
   date = Date.parse(x['startDateTime'])
 
+  #errorは除外
+  if  x['eventId'] == 65536
+    next
+  end
+
   if date == today then
     time = Time.parse(x['startDateTime'])
 
@@ -50,7 +55,7 @@ todaydata.each do |x|
     .gsub(/\ue193/,"【新】")
   time = Time.parse(x['startDateTime']) - Time.now
 
-  #sleep
+  #sleepする
   if time > 0 then
     sleep time
     client.update("【#{x['channelName']}】#{cleanTitle}　を録画中 #nasne")
