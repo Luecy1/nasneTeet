@@ -24,7 +24,6 @@ def pickEffectData(data)
   return lastData
 end
 
-=begin
 twconfig = YAML.load(open('config.yaml'))
 client = Twitter::REST::Client.new do |config|
  config.consumer_key = twconfig['consumer_key']
@@ -32,13 +31,12 @@ client = Twitter::REST::Client.new do |config|
  config.access_token = twconfig['access_token']
  config.access_token_secret = twconfig['access_token_secret']
 end
-=end
 while true do
 
 begin
 
-#url = 'http://192.168.0.11:64220/schedule/reservedListGet?searchCriteria=0&filter=0&startingIndex=0&requestedCount=0&sortCriteria=0&withDescriptionLong=0&withUserData=1'
-url = 'reservedListGet.json' #LocalTest用
+url = 'http://192.168.0.13:64220/schedule/reservedListGet?searchCriteria=0&filter=0&startingIndex=0&requestedCount=0&sortCriteria=0&withDescriptionLong=0&withUserData=1'
+#url = 'reservedListGet.json' #LocalTest用
 data = JSON.load(open(url).read)
 
 #最後を取得
@@ -63,8 +61,9 @@ time = Time.parse(lastData['startDateTime']) - Time.now
 #sleepする
 if time > 0 then
   sleep time
-  #client.update("【#{lastData['channelName']}】#{cleanTitle}　を録画中 #nasne")
-  puts "【#{lastData['channelName']}】#{cleanTitle}　を録画中 #nasne"
+  client.update("【#{lastData['channelName']}】#{cleanTitle}　を録画中 #nasne")
+  #puts "【#{lastData['channelName']}】#{cleanTitle}　を録画中 #nasne"
+  sleep 60
 end
 
 rescue => e
