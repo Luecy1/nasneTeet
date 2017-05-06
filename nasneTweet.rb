@@ -17,7 +17,7 @@ while true do
 
 begin
 
-url = 'http://192.168.0.11:64220/schedule/reservedListGet?searchCriteria=0&filter=0&startingIndex=0&requestedCount=0&sortCriteria=0&withDescriptionLong=0&withUserData=1'
+url = 'http://192.168.0.13:64220/schedule/reservedListGet?searchCriteria=0&filter=0&startingIndex=0&requestedCount=0&sortCriteria=0&withDescriptionLong=0&withUserData=1'
 #url = 'reservedListGet.json' #LocalTest用
 data = JSON.load(open(url).read)
 
